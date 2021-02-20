@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :sessions, only:[:new,:create,:destroy]
-  resources :users
   root "users#index"
+  resources :sessions, only:[:new, :create, :destroy]
+  resources :users do
+    resources :tweets, only:[:index, :new, :create, :destroy]
+  end
+  get "tweets/index"
 end

@@ -28,8 +28,11 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find_by(id: params[:id])
-    @user.update(user_update_params)
-    redirect_to root_path
+    if  @user.update(user_params)
+      redirect_to root_path
+    else
+      render @user
+    end
   end
 
   def destroy
@@ -42,10 +45,10 @@ class UsersController < ApplicationController
 
   private
     def user_params
-     params.require(:user).permit(:email,:password,:password_confirmation)
+      params.require(:user).permit(:email,:password,:password_confirmation)
     end
 
-    def user_update_params
-      params.require(:user).permit(:email)
-    end
+    # def user_update_params
+    #   params.require(:user).permit(:email)
+    # end
 end
