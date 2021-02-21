@@ -4,17 +4,20 @@ class TweetsController < ApplicationController
   end
 
   def new
-    @user = User.find(params[:user_id])
+    @tweet = Tweet.new
   end
 
   def create
-    @user = User.find(params[:user_id])
-    @user.tweets.create(tweet_params)
-    redirect_to user_tweets_path(@user)
+    @tweet = Tweet.new(tweet_params)
+    if @tweet.save
+      redirect_to tweets_index_path
+    else
+      render new_tweet_path
+    end
   end
-
+  
   def show
-    @tweet = Tweet.find(params[:id])
+    @tweet = Tweet.find_by(id: params[:id])
   end
 
   def edit
@@ -22,14 +25,13 @@ class TweetsController < ApplicationController
 
   def destroy
     @tweet = Tweet.find(params[:id])
-    if @tweet.destroy
-      redirect_to "/",flash: {danger: "投稿を削除しました"}
-    end
+    @tweet.destroy
+      redirect_to tweets_index_path
   end
-
+  
   
   private
-  def tweet_params
-    params.permit(:body)
-  end
+    def tweet_params
+      params.permit(:body)
+    end
 end
