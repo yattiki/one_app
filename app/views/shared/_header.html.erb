@@ -17,7 +17,7 @@
       <% if logged_in? %>
         <li><%= link_to "投稿一覧", tweets_index_path %></li>
         <li><%= link_to "新規投稿", new_tweet_path %></li>
-        <li><%= link_to @current_user.email + "さんでログイン中"%></li>
+        <li><%= link_to @current_user.email + "さん", user_path(@current_user) %></li>
         <li><%= link_to "ログアウト", session_path(@current_user), method: :delete %></li>
       <% else %>
         <li><%= link_to "ログイン", new_session_path %></li>

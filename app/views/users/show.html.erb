@@ -2,3 +2,4 @@
 <br>
 <p><%= link_to "Eメールアドレスを編集する", edit_user_path(@user) %></p>
 <p><%= link_to "このユーザーを削除する", user_path(@user), method: :delete %></p>
+<h3 class="page-header"><%= @user.email + "さんの投稿一覧" %></h3>

@@ -45,10 +45,10 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:email,:password,:password_confirmation)
+      params.require(:user).permit(:email,:password, :password_confirmation)
     end
 
-    # def user_update_params
-    #   params.require(:user).permit(:email)
-    # end
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
+    end
 end
