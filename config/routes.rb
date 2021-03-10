@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   root "users#index"
   resources :sessions, only:[:new, :create, :destroy]
-  resources :users
-  resources :tweets, only:[:new, :create, :edit, :update, :destroy]
-  get "tweets/index"
+  resources :users do
+    resources :tweets, only:[:index, :new, :create, :edit, :update]
+  end
+  delete "tweets/:id",to: "tweet#destroy"
 end

@@ -1,5 +1,5 @@
 <h3 class="page-header">今日の出来事をつぶやこう</h3>
-<%= form_with(model: @tweet, local: true) do |f| %>
+<%= form_with(model: @user, local: true) do |f| %>
 <p><%= f.label :body,"投稿内容" %></p>
 <p><%= f.text_area :body %></p>
 <p><%= f.submit "投稿", class: "btn btn-primary" %></p>

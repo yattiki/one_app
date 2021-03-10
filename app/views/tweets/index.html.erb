@@ -3,8 +3,8 @@
   <% @tweet.each do |tweet| %>
   <li class="list-group-item">
     <%= tweet.body %>
-      <span class="badge text-danger"><%= link_to "[編集]", edit_tweet_path(tweet) %></span>
-      <span class="badge text-danger"><%= link_to "[削除]", tweet_path(tweet), method: :delete %></span>
+      <span class="badge text-danger"><%= link_to "[編集]", edit_user_tweet_path(@user, tweet) %></span>
+      <span class="badge text-danger"><%= link_to "[削除]", "tweets/#{tweet.id}", method: :delete %></span>
   </li>
   <% end %>
 </ul>
